@@ -1,0 +1,10 @@
+# Ignore all .pyc files
+*.pyc
+*.swp
+.DS_Store
+*.o
+
+src/bin/
+test/bin/
+# Ignore all __pycache__ directories
+__pycache__/
