@@ -5,6 +5,7 @@ import numpy
 import pyqtgraph as pg
 import sys 
 import os
+import time
 
 def f(n):
     return numpy.abs(n)
@@ -39,15 +40,13 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     main = MainWindow()
     main.showHalls()
+    main.show()
 
     for line in sys.stdin:
     # x1,x2,x3,x4:y1,y2,y3,y4
-        print("line is", line)
         xsAndYs = line.split(":")
         xs = list(map(float,xsAndYs[0].split(",")))
         ys = list(map(float,xsAndYs[1].split(",")))
-        print("xs is", xs)
-        print("ys is", ys)
         main.showShape(xs, ys)
         main.show()
 

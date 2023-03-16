@@ -2,8 +2,13 @@
 
 // Shapes are a set of vertices.  All vertices fit inside a 2.0w x 1.0h box.  Rotation of the box is around 
 // its middle. The co-ordinates of vertices are 0,0 in the lower left corner up to 2.0, 1.0 in the upper right.
+// NOTE, vertices can be on the border of the box
 
 struct shape * addVertex(struct shape *s, const struct vertex v) {
+    if ((v.x_ < 0) || (v.x_ > SCALE_FACTOR * 2) || (v.y_ < 0) || (v.y_ > SCALE_FACTOR)) {
+        printf("Bad vertex: %s\n", vertexToSharedString(v));
+        return s;
+    }
     if (s->nVertices_ >= s->capacity_) {
         struct vertex *buf;
         int oldSize = s->capacity_;
@@ -59,8 +64,9 @@ void initShape(struct shape *s){
     s->nVertices_= 0;
     s->capacity_ = 2;
     s->vertices_ = malloc(s->capacity_ * sizeof(struct vertex));
-    s->x_off_ = 0;
-    s->y_off_ = 0;
+    // all shapes start at -2,0 which is in the upper hall to the left.
+    s->x_off_ = scaleIt(-2.0);
+    s->y_off_ = scaleIt(0.0);
 }
 
 // constructs a deep copy of s and applies offsets.  Returns copy
