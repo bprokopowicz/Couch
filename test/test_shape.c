@@ -181,7 +181,6 @@ void testShapesCutCorner() {
   TEST(shapeIsInside(t),"s doesn't cut corner yet");
   moveShape(&s, -0.5, -1);
   t = applyOffsets(s);
-  printShape(t);
   TEST(!shapeIsInside(t),"s now cuts corner");
   freeShape(t);
   freeShape(s);
