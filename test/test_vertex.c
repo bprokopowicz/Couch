@@ -3,30 +3,30 @@
 
 void testPointConstructors() {
     struct vertex v1;
-    initVertex(&v1,0.000000003,123.123456789);
-    TESTLONGEQ(v1.x_,3L,"v1 constructor x_ value");
-    TESTLONGEQ(v1.y_,123123456789L,"v1 constructor y_ value");
+    initVertex(&v1, 0.000000003, 123.123456789);
+    TESTLONGEQ(3L, v1.x_, "v1 constructor x_ value");
+    TESTLONGEQ(123123456789L, v1.y_, "v1 constructor y_ value");
 }
 
 void testPointsScaling() {
     struct vertex v1;
-    initVertex(&v1, 0.000000003,123.123456789);
-    TESTLONGEQ(v1.x_, 3L, "v1 scaled x_ value");
-    TESTLONGEQ(v1.y_, 123123456789L, "v1 scaled y_ value");
+    initVertex(&v1, 0.000000003, 123.123456789);
+    TESTLONGEQ(3, v1.x_, "v1 scaled x_ value");
+    TESTLONGEQ(123123456789L, v1.y_, "v1 scaled y_ value");
     struct vertex v2;
-    initVertex(&v2,-0.000000003,-123.123456789);
-    TESTLONGEQ(v2.x_, -3L, "v2 scaled x_ value");
-    TESTLONGEQ(v2.y_, -123123456789L, "v2 scaled y_ value");
+    initVertex(&v2, -0.000000003, -123.123456789);
+    TESTLONGEQ(-3, v2.x_, "v2 scaled x_ value");
+    TESTLONGEQ(-123123456789L, v2.y_, "v2 scaled y_ value");
 }
 
 void testPointsToString() {
     struct vertex v1;
     initVertex(&v1,-1.0,0.05);
-    TESTSTREQ(vertexToSharedString(v1), "(-1.000000000,0.050000000)", "v1 toString");
+    TESTSTREQ("(-1.000000000,0.050000000)", vertexToSharedString(v1), "v1 toString");
 
     struct vertex v2;
     initVertex(&v2,12.0012345,0.123456789);
-    TESTSTREQ(vertexToSharedString(v2), "(12.001234500,0.123456789)", "v2 toString");
+    TESTSTREQ("(12.001234500,0.123456789)", vertexToSharedString(v2), "v2 toString");
 }
 
 void testPointsInside() {

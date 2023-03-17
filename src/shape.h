@@ -10,6 +10,9 @@ struct shape {
     long x_off_, y_off_;
 };
 
+#define SHAPE_START_X -2.0
+#define SHAPE_START_Y 0
+
 void initShape(struct shape *s);
 
 struct shape* addVertex(struct shape *s, struct vertex v);
@@ -21,6 +24,8 @@ void moveShapeScaled(struct shape *s, const long x, const long y);
 char *shapeToNewString(struct shape s);
 
 int shapeIsInside(struct shape s); 
+
+long highestPointScaled(struct shape s);
 
 struct shape applyOffsets(struct shape s);
 

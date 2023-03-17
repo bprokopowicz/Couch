@@ -65,12 +65,14 @@ void initShape(struct shape *s){
     s->capacity_ = 2;
     s->vertices_ = malloc(s->capacity_ * sizeof(struct vertex));
     // all shapes start at -2,0 which is in the upper hall to the left.
-    s->x_off_ = scaleIt(-2.0);
-    s->y_off_ = scaleIt(0.0);
+    s->x_off_ = scaleIt(SHAPE_START_X);
+    s->y_off_ = scaleIt(SHAPE_START_Y);
 }
 
 // constructs a deep copy of s and applies offsets.  Returns copy
 // copy needs to be freed with freeShape() after use.
+// this is not needed before shapeIsInside() - it applies the offsets
+
 struct shape applyOffsets(struct shape s) {
     struct shape moved;
     int n = s.nVertices_;
@@ -88,6 +90,17 @@ struct shape applyOffsets(struct shape s) {
 
 void freeShape(struct shape s) {
     free(s.vertices_);
+}
+
+long highestPointScaled(struct shape s) {
+    const int n = s.nVertices_;
+    long highest = 0;
+    for (int i = 0; i < n; i++) {
+        if (s.vertices_[i].y_ > highest) {
+            highest = s.vertices_[i].y_;
+        }
+    }
+    return highest + s.y_off_;
 }
 
 int shapeIsInside(struct shape s) {
