@@ -1,11 +1,12 @@
 #include "shape.h"
 struct creature {
-    struct shape s;
-    int age;
+    struct shape shape_;
+    int age_;
 };
 
-void initCreature(struct creature *c);
+struct creature randomCreature(int nVertices, double maxWidth, double maxHeight);
+void initCreature();
 void stepCreature(struct creature *c);
 void freeCreature(struct creature c);
 struct creature cloneCreature(struct creature c);
-struct creature spawnCreature(struct creature c);
+struct creature spawnChildCreature(struct creature c);
