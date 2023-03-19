@@ -1,27 +1,27 @@
-#include "shape.h"
+#include "creature.h"
 #include "test.h"
 
 void testShapesMoving() {
   // rectangle inside upper hall
+  struct creature c;
+  initCreature(&c);
+
   struct vertex v1;
-  initVertex(&v1,-1.0,0.5);
+  initVertex(&v1,0.0,0.5);
   struct vertex v2;
-  initVertex(&v2,-0.5,0.5);
+  initVertex(&v2,0.5,0.6);
   struct vertex v3;
-  initVertex(&v3,-0.5,0.1);
+  initVertex(&v3,0.5,0.1);
   struct vertex v4;
-  initVertex(&v4,-1.0,0.1);
-  struct shape s;
-  struct shape t;
-  initShape(&s);
-  addVertex(&s,v1);
-  addVertex(&s,v2);
-  addVertex(&s,v3);
-  addVertex(&s,v4);
-  for (int i = 0; i < 100; i++) {
-      printShape(s);
-      moveShape(&s, 0.001, -0.002);
-      t = applyOffsets(s);
+  initVertex(&v4,0.0,0.05);
+  addVertex(&c.shape_,v1);
+  addVertex(&c.shape_,v2);
+  addVertex(&c.shape_,v3);
+  addVertex(&c.shape_,v4);
+  for (int i = 0; i < 40; i++) {
+      printShape(c.shape_);
+      stepCreature(&c);
+      struct shape t = applyOffsets(c.shape_);
       printShape(t);
       freeShape(t);
   }

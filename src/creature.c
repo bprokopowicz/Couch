@@ -12,7 +12,7 @@ void freeCreature(struct creature c) {
     freeShape(c.shape_);
 }
 
-#define DELTA 0.01
+#define DELTA 0.1
 
 void stepCreature(struct creature *c) {
     // move right if you can
