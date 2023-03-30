@@ -214,6 +214,23 @@ void testShapesCutCorner() {
   freeShape(s3);
 }
 
+void testMelt() {
+ 
+  // single edge cuts the corner; melts around it
+  // an edge from (0,1) down to (2,0) doesn't cut the corner
+  struct vertex va;
+  initVertex(&va,0,1);
+  struct vertex vb;
+  initVertex(&vb,2,0);
+  struct shape s;
+  initShape(&s);
+  addVertex(&s,va);
+  addVertex(&s,vb);
+  TEST(shapeIsInside(s),"s doesn't cut corner before move");
+  moveShape(&s, 0.5, -0.5);
+  TEST(!shapeIsInside(s),"s cuts corner after move");
+  freeShape(s);
+}
 
 int main(int argc, char** argv) {
     testShapesToString();
@@ -222,4 +239,5 @@ int main(int argc, char** argv) {
     testShapesCutCorner();
     testShapesMove();
     testHighestPoint();
+    testMelt();
 }

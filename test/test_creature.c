@@ -42,7 +42,7 @@ void testStep() {
     TEST(shapeIsInside(c.shape_), "rectange is inside after step");
     // did it move?
     TEST(((offsetX!=c.shape_.x_off_)  || (offsetY!=c.shape_.y_off_)), "testOffsetChanged");
-    TESTLONGEQ(1, c.steps_, "one step recorded");
+    TESTLONGEQ(1L, (long)c.steps_, "one step recorded");
 
     // no down-move in first 50 steps
     long highest = highestPointScaled(c.shape_);
@@ -56,7 +56,7 @@ void testStep() {
         }
     }
     TEST(!movedDown, "No down move within first 50 steps");
-    TESTLONGEQ(50, c.steps_, "50 steps recorded");
+    TESTLONGEQ(50L, (long)c.steps_, "50 steps recorded");
     TESTLONGEQ(scaleIt(-1.5), c.shape_.x_off_, "shaped stepped right by 0.5");
 
     // move until a down-move happens
@@ -69,7 +69,7 @@ void testStep() {
         }
     }
     TEST(movedDown, "Down move within next 1000 steps");
-    TESTLONGEQ(150, c.steps_, "Down move after 150 steps");
+    TESTLONGEQ(150L, (long)c.steps_, "Down move after 150 steps");
 }
 
 int main(int argc, char** argv) {

@@ -12,21 +12,20 @@ void freeCreature(struct creature c) {
     freeShape(c.shape_);
 }
 
-#define DELTA 0.1
 
 void stepCreature(struct creature *c) {
     // move right if you can
     c->steps_++;
-    moveShape(&c->shape_, DELTA, 0.0);
+    moveShape(&c->shape_, TRANSLATE_DELTA, 0.0);
     if (!shapeIsInside(c->shape_)) {
         // undo
-        moveShape(&c->shape_, -DELTA, 0.0);
+        moveShape(&c->shape_, -TRANSLATE_DELTA, 0.0);
     }
     // move down if you can
-    moveShape(&c->shape_, 0.0, -DELTA);
+    moveShape(&c->shape_, 0.0, -TRANSLATE_DELTA);
     if (!shapeIsInside(c->shape_)) {
         // undo
-        moveShape(&c->shape_, 0.0, DELTA);
+        moveShape(&c->shape_, 0.0, TRANSLATE_DELTA);
     }
 }
 

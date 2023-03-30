@@ -11,11 +11,11 @@ void testPointConstructors() {
 void testPointsScaling() {
     struct vertex v1;
     initVertex(&v1, 0.000000003, 123.123456789);
-    TESTLONGEQ(3, v1.x_, "v1 scaled x_ value");
+    TESTLONGEQ(3L, v1.x_, "v1 scaled x_ value");
     TESTLONGEQ(123123456789L, v1.y_, "v1 scaled y_ value");
     struct vertex v2;
     initVertex(&v2, -0.000000003, -123.123456789);
-    TESTLONGEQ(-3, v2.x_, "v2 scaled x_ value");
+    TESTLONGEQ(-3L, v2.x_, "v2 scaled x_ value");
     TESTLONGEQ(-123123456789L, v2.y_, "v2 scaled y_ value");
 }
 
