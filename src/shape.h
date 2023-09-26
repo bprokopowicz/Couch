@@ -21,6 +21,8 @@ void moveShape(struct shape *s, const double x, const double y);
 
 void moveShapeScaled(struct shape *s, const long x, const long y);
 
+void meltShape(struct shape *s);
+
 char *shapeToNewString(struct shape s);
 
 int shapeIsInside(struct shape s); 

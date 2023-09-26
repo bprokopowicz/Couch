@@ -29,7 +29,10 @@ void moveShape(struct shape *s, const double x, const double y) {
 void moveShapeScaled(struct shape *s, const long x, const long y) {
         s->x_off_ += x;
         s->y_off_ += y;
-    }
+}
+
+void meltShape(struct shape *s) {
+}
 
 // returns new memory - must delete it.
 char *shapeToNewString(struct shape s) {
@@ -106,7 +109,9 @@ long highestPointScaled(struct shape s) {
 int shapeIsInside(struct shape s) {
     const int n = s.nVertices_;
 
-    // for speed, we copy the vertices onto the stack instead of using malloc 
+    // for speed, we copy the vertices onto the stack instead of using malloc before adjusting them
+
+    // translate and rotate the shape.
     struct vertex offsetVertices[n];
     for (int i = 0; i < n; i++) {
         const struct vertex v = s.vertices_[i];
@@ -130,6 +135,9 @@ int shapeIsInside(struct shape s) {
         }
     }
     return 1;
+}
+
+void meltShape(struct shape *s) {
 }
 
 void printShape(struct shape s) {
